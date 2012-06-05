@@ -12,8 +12,10 @@ Instalação
 ----------
 
 Instale o virtualenv e virtualenvwrapper.
+<pre>
 mkvirtualenv --no-site-packages wms
 pip install -r requirements.txt
+</pre>
 
 *Atenção*
 foi testado apenas em ambiente Linux (Fedora 16/17 e Ubuntu 12.04) com encoding utf-8
@@ -22,9 +24,11 @@ foi testado apenas em ambiente Linux (Fedora 16/17 e Ubuntu 12.04) com encoding 
 Uso
 ---
 
+<pre>
 workon wms
 python manage.py syncdb
 python manage.py runserver
+</pre>
 
 Para adicionar processos, passos e trabalhos, utilize a interface do admin:
 http://localhost:8000/admin
