@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>WMS - Workflow Management System</title>
+
+{% block static %}
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}/js/extjs/resources/css/ext-all.css">
+<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery.meio.mask.min.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}/js/extjs/ext-jquery-adapter.js"></script>
+<!-- <script type="text/javascript" src="{{ MEDIA_URL }}/js/extjs/ext-base.js"></script> -->
+<script type="text/javascript" src="{{ MEDIA_URL }}/js/extjs/ext-all.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}/js/extjs/ux/RowExpander.js"></script>
+
+<script type="text/javascript" src="{{ MEDIA_URL }}/js/extjs/extensions/xcheckbox/xcheckbox.js"></script>
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}/js/extjs/extensions/xcheckbox/xcheckbox.css">
+
+
+<link rel="Stylesheet" type="text/css" href="{{ MEDIA_URL }}/css/base.css">
+
+{% endblock %}
+
+<style type="text/css">
+  {% block css %}{% endblock %}
+</style>
+
+<script type="text/javascript">
+  /*
+   * URLs mappeds from django
+   */
+  var URL_AUTH_LOGOUT = '/auth/logout/';
+  var URL_MAIN_GRID = '{% url workflow_work_get %}';
+  var URL_WORKFLOW_PROCESS_WORK = '{% url workflow_process_work %}';
+  var URL_WORKFLOW_STEP_TASKS = '{% url workflow_step_tasks %}';
+
+  var URL_STEP_TASKS = '{% url workflow_step_tasks %}';
+  var URL_WORKFLOW_WORK_FORM_ACCEPT = '{% url workflow_work_form_accept %}';
+  var URL_WORKFLOW_WORK_WIN_REJECT = '';
+
+  var URL_WORKFLOW_WORK_NEW = '{% url workflow_work_new %}';
+  var URL_WORKFLOW_WORK_ADD = '{% url workflow_work_add %}';
+  var URL_WORKFLOW_WORK_ACCEPT = '{% url workflow_work_accept %}';
+  var URL_WORKFLOW_WORK_REJECT = '{% url workflow_work_reject %}';
+  var URL_WORKFLOW_WORK_HISTORY = '{% url workflow_work_history %}';
+  var URL_WORKFLOW_WORK_FILES = '{% url workflow_work_files %}';
+  var URL_WORKFLOW_WORK_INFORMATION = '{% url workflow_work_information %}';
+  var URL_WORKFLOW_WORK_CLIENT = '{% url workflow_work_client %}';
+  var URL_WORKFLOW_FILE_ADD = '{% url workflow_file_add %}';
+  var URL_WORKFLOW_FILE_DEL = '{% url workflow_file_del %}';
+  var URL_WORKFLOW_FILE_LIST = '{% url workflow_file_list %}';
+
+  var URL_WORKFLOW_ITEM_ADD = '{% url workflow_item_add %}';
+  var URL_WORKFLOW_ITEM_LIST = '{% url workflow_item_list %}';
+  var URL_WORKFLOW_ITEM_DEL = '{% url workflow_item_del %}';
+  var URL_WORKFLOW_ITEM_PRODUCTS = '{% url workflow_item_products %}';
+  var URL_WORK_PEDIDO_REPORT = '{% url workflow_item_report %}';
+
+  {% if product_service %}
+    var PRODUCT_SERVICE_LIST = {{ product_service|safe }};
+  {% endif %}
+
+
+
+  {% block js %}
+
+  {% endblock %}
+
+  Ext.onReady(function() {
+    Ext.BLANK_IMAGE_URL = '{{ MEDIA_URL }}/js/extjs/resources/images/default/s.gif';
+
+    {% block js_init %}
+
+    {% endblock %}
+  });
+</script>
+
+</head>
+<body>
+<!--
+<div id="header">
+  <div id="logo">Xsol Workflow</div>
+</div>
+-->
+{% block main %}{% endblock %}
+
+</body>
+</html>

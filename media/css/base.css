@@ -1,0 +1,86 @@
+body {
+  font-family: Arial;
+  font-size: 10pt;
+}
+/*
+#header {
+  padding: 10px;
+  background: #ADD8E6;
+  height: 100%;
+}*/
+
+.panelStep {
+  font-size: 10pt;
+}
+
+p.pfat {
+  padding: 10px;
+  font-size: 10pt;
+}
+
+/* Datagrid */
+.rowExpander {
+  padding: 5px;
+  color: #444444;
+}
+.blue-row .x-grid3-cell-inner{ color:blue; }
+.gray-row .x-grid3-cell-inner{ color:gray; }
+.red-row .x-grid3-cell-inner{ color:red; }
+.green-row .x-grid3-cell-inner{ color:green; }
+
+/* icons */
+.historic-icon {
+  background: url(icons/history.png) no-repeat !important; /* 0 6px no-repeat !important; */
+}
+.info-icon {
+  background: url(icons/info.png) no-repeat !important;
+}
+.password-icon {
+  background: url(icons/password.png) no-repeat !important;
+}
+.exit-icon {
+  background: url(icons/exit.png) no-repeat !important;
+}
+.attach-icon {
+  background: url(icons/attach.png) no-repeat !important;
+}
+.delete-abled-icon {
+  background: url(icons/delete1.png) no-repeat !important;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+.delete-disabled-icon {
+  background: url(icons/delete2.png) no-repeat !important;
+  width: 16px;
+  height: 16px;
+}
+.accept-icon {
+  background: url(icons/accept.png) no-repeat !important;
+}
+.reject-icon {
+  background: url(icons/delete.png) no-repeat !important;
+}
+.add-icon {
+  background: url(icons/add.png) no-repeat !important;
+}
+
+.tasks-icon {
+  background: url(icons/tasks.png) no-repeat !important;
+}
+
+.client-icon {
+  background: url(icons/user.png) no-repeat !important;
+}
+
+.save-icon {
+  background: url(icons/disk.png) no-repeat !important;
+}
+
+.product-icon {
+  background: url(icons/layout.png) no-repeat !important;
+}
+
+.pdf-icon {
+  background: url(icons/pdf.png) no-repeat !important;
+}

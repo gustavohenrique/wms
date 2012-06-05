@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block css %}
+#fixed {
+  /* Netscape 4, IE 4.x-5.0/Win and other lesser browsers will use this */
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index:10;
+}
+#downloadLink {
+  padding: 10px;
+  font-size: 9px;
+}
+
+{% endblock %}
+
+{% block js %}
+Ext.onReady( function() {
+
+  var login_form = new Ext.FormPanel({
+    id: 'loginForm',
+    url: '.',
+    frame: true,
+    border: false,
+    standardSubmit: true,
+    items: [{
+      xtype: 'textfield',
+      fieldLabel: '{{ form.username.label }}',
+      name: '{{ form.username.name }}',
+    },{
+      xtype: 'textfield',
+      inputType: 'password',
+      fieldLabel: '{{ form.password.label }}',
+      name: '{{ form.password.name }}'
+    }],
+    buttons: [{
+      text: 'Ok',
+      handler: function() {
+        login_form.getForm().submit();
+      }
+    }]
+  });
+
+
+  var win = new Ext.Window({
+    title:'Login',
+    modal: false,
+    closable: false,
+    resizable: false,
+    layout: 'fit',
+    width: 300,
+    height: 130,
+    border: false,
+    items: login_form
+  }).show();
+
+
+  win.add(login_form);
+  win.show();
+
+  var nav = new Ext.KeyNav(login_form.getForm().getEl(), {
+    "enter" : function(e){
+        this.getForm().submit();
+    },
+    scope : login_form,
+  });
+
+  {% if form.errors %}
+    Ext.Msg.alert('Error','<span style="color:red">Usuário ou senha incorretos.</span>');
+  {% endif %}
+});
+
+{% endblock %}
+
+{% block main %}
+<div id="fixed">
+  <p id="downloadLink">
+    [<a href="/wms/admin/">Administração do Sistema</a>] |
+    [<a href="{{ MEDIA_URL }}/wmsalert.exe">Download Workflow Alert</a>]
+  </p>
+</div>
+{% endblock %}

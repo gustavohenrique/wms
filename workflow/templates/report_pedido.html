@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Pedido N. {{ work.id }} - {{ work.name }}</title>
+
+<style type="text/css">
+body {
+    margin: 0px;
+    padding: 0px;
+    font-size: 11px;
+    font-family: Arial;
+}
+
+.Title {
+    border: 1px solid silver;
+    background-color: #FFFF98;
+    font-size: 11px;
+}
+
+.top { padding-bottom: 5px; font-size: 12pt; }
+.comBorda td { text-align: center; border: 1px solid silver; }
+#checklist td, #ass td, #aprovacao td, #obs td { text-align: left; }
+.label { font-weight: bold; }
+.productTitle { background: #EFEFEF; }
+#checklist td { font-size:10px; }
+</style>
+
+</head>
+
+<body>
+
+<table id="faturamento" width="100%" border="0" cellpadding="2" cellspacing="0">
+    <tr>
+        <td class="top" width="170"><img src="/media/images/logo.jpg" alt="Logotipo"></td>
+        <td class="top" colspan="2" align="center">PEDIDO XSOL</td>
+        <td align="right">#00{{ work.id }}<br>13/11/2009</td>
+    </tr>
+    <tr>
+        <td colspan="4" class="Title">DADOS PARA FATURAMENTO E ANÁLISE DE CRÉDITO</td>
+    </tr>
+    <tr>
+        <td colspan="4"><span class="label">Nome/Razão Social:</span><br> {{ fields.razaosocial }}</td>
+    </tr>
+    <tr>
+        <td><span class="label">CPF/CNPJ:</span><br> {{ fields.cpfcnpj }}</td>
+        <td><span class="label">Telefone:</span><br> {{ fields.telefone1 }}</td>
+        <td><span class="label">E-mail:</span><br> {{ fields.email1 }}</td>
+        <td><span class="label">Contato:</span><br> {{ fields.contato }}</td>
+    </tr>
+    <tr>
+        <td><span class="label">RG/Insc. Estadual:</span><br>  {{ fields.inscestadual }}</td>
+        <td colspan="3"><span class="label">Insc. Municipal:</span><br> {{ fields.inscmunicipal }}</td>
+    </tr>
+    <tr>
+        <td><span class="label">Endereço:</span><br>{{ fields.enderecofaturamento }}</td>
+        <td><span class="label">Bairro:</span><br>{{ fields.bairro1 }}</td>
+        <td><span class="label">Cidade:</span><br>{{ fields.cidade }}/{{ fields.uf }}</td>
+        <td><span class="label">CEP:</span><br>{{ fields.cep }}</td>
+    </tr>
+    <tr><td colspan="4">&nbsp;</td></tr>
+    <tr>
+        <td colspan="4" class="Title">DADOS COMPLEMENTARES DO LOCAL DE INSTALAÇÃO</td>
+    </tr>
+    <tr>
+        <td><span class="label">Telefone:</span><br> {{ fields.telefone2 }}</td>
+        <td><span class="label">Fax:</span><br> {{ fields.telefone2 }}</td>
+        <td><span class="label">E-mail:</span><br> {{ fields.email2 }}</td>
+        <td><span class="label">Contato:</span><br> {{ fields.contato1 }}</td>
+    </tr>
+    <tr>
+        <td><span class="label">Endereço:</span><br>{{ fields.enderecoinstalacao }}</td>
+        <td><span class="label">Bairro:</span><br>{{ fields.bairro2 }}</td>
+        <td><span class="label">Cidade:</span><br>{{ fields.cidade1 }}/{{ fields.uf1 }}</td>
+        <td><span class="label">CEP:</span><br>{{ fields.cep1 }}</td>
+    </tr>
+</table>
+<br>
+<table id="produtos" class="comBorda" width="100%" border="0" cellpadding="2" cellspacing="0" style="font-size:10px; border:1px solid silver;">
+    <tr>
+        <td colspan="5" class="Title" style="text-align:left;">DADOS DO PRODUTO</td>
+    </tr>
+    <tr>
+        <td class="productTitle">Produto</td>
+        <td class="productTitle">Descrição</td>
+        <td class="productTitle">Qtd</td>
+        <td class="productTitle">Valor</td>
+        <td class="productTitle">Total</td>
+    </tr>
+    {% for item in items %}
+        <tr>
+            <td width="30%">{{ item.product }}</td>
+            <td width="40%">{{ item.productdesc }}</td>
+            <td width="10%" >{{ item.amount }}</td>
+            <td width="10%">R$ {{ item.price }}</td>
+            <td width="10%">R$ {{ item.total }}</td>
+        </tr>
+    {% endfor %}
+    <tr>
+        <td colspan="4" style="text-align:right;">TOTAL DO PEDIDO: &nbsp;</td>
+        <td>R$ {{ total }}</td>
+    </tr>
+    <tr>
+        <td colspan="5" style="text-align:left;"><span class="label">Descrição detalhada da operação de venda:</span><br>{{ fields.descricaodavenda }}</td>
+    </tr>
+</table>
+<br>
+
+
+<table id="checklist" class="comBorda" width="100%" border="0" cellpadding="2" cellspacing="0" style="font-size:10px">
+    <tr>
+        <td colspan="2" class="Title">Check List</td>
+        <td colspan="6" class="Title" style="text-align:left;">Fator Financiamento Xsol</td>
+    </tr>
+    <tr>
+        <td>Inst. Elétrica</td>
+        <td>{{ fields.insteletrica }}</td>
+        <td class="productTitle">Entrada</td>
+        <td class="productTitle">Parcelas</td>
+        <td class="productTitle">Fator</td>
+        <td class="productTitle">Entrada</td>
+        <td class="productTitle">Parcelas</td>
+        <td class="productTitle">Fator</td>
+    </tr>
+    <tr>
+        <td>Ponto de Rede</td>
+        <td>{{ fields.pontoderede }}</td>
+        <td>30%</td>
+        <td>1</td>
+        <td>0,700</td>
+        <td>30%</td>
+        <td>7</td>
+        <td>0,115213212</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td>30%</td>
+        <td>2</td>
+        <td>0,359</td>
+        <td>30%</td>
+        <td>8</td>
+        <td>0,103147876</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td>30%</td>
+        <td>3</td>
+        <td>0,245</td>
+        <td>30%</td>
+        <td>9</td>
+        <td>0,093793387</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td>30%</td>
+        <td>4</td>
+        <td>0,188</td>
+        <td>30%</td>
+        <td>10</td>
+        <td>0,086336383</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td>30%</td>
+        <td>5</td>
+        <td>0,154</td>
+        <td>30%</td>
+        <td>11</td>
+        <td>0,080259261</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td>30%</td>
+        <td>6</td>
+        <td>0,131</td>
+        <td>30%</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td style="font-size:9px;">&nbsp;</td>
+        <td style="font-size:9px;">&nbsp;</td>
+        <td colspan="6" style="font-size:9px;">Xsol Serviços ,Comercial, Loc. e Representações Ltda. - Banco 409 - Agência 0072 - C/C 115981-2 - CNPJ 07.620.166/0001-50</td>
+    </tr>
+    <tr>
+        <td style="font-size:9px;">&nbsp;</td>
+        <td style="font-size:9px;">&nbsp;</td>
+        <td colspan="6" style="font-size:9px;">Center Supplies Supr de Informática Ltda. - Banco 409 - Agência 0309 - C/C 250625-6 - CNPJ 07.457.158/0001-34</td>
+    </tr>
+</table>
+
+<br>
+<table id="ass" class="comBorda" width="100%" border="0" cellpadding="2" cellspacing="0">
+    <tr>
+        <td class="Title">Xsol</td>
+        <td class="Title">Cliente</td>
+    </tr>
+    <tr>
+        <td><br>&nbsp;</td>
+        <td><br>&nbsp;</td>
+    </tr>
+    <tr>
+        <td style="font-size:10px;">NOME LEGÍVEL: {{ user.first_name }} {{ user.last_name }}</td>
+        <td style="font-size:10px;">NOME LEGÍVEL:</td>
+    </tr>
+    <tr>
+        <td style="font-size:10px;">CPF:</td>
+        <td style="font-size:10px;">CPF:</td>
+    </tr>
+</table>
+<br>
+<table id="aprovacao" class="comBorda" width="100%" border="0" cellpadding="2" cellspacing="0">
+    <tr>
+        <td colspan="2" class="Title">APROVAÇÕES</td>
+    </tr>
+    <tr>
+        <td width="50%" style="text-align:left;">Aprovação de preço:</td>
+        <td style="text-align:left;">Aprovação de Crédito:</td>
+    </tr>
+</table>
+<br>
+
+<table id="obs" class="comBorda" width="100%" border="0" cellpadding="2" cellspacing="2">
+    <tr>
+        <td class="Title">OBSERVAÇÕES</td>
+    </tr>
+    <tr>
+        <td>{{ fields.outrasobservacoes }}</td>
+    </tr>
+</table>
+
+
+<br>
+</body>
+</html>

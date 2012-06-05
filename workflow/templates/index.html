@@ -1,0 +1,105 @@
+{% extends 'base_site.html' %}
+
+{% block static %}
+{{ block.super }}
+<script type="text/javascript" src="{{ MEDIA_URL }}/js/workflow/step.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}/js/workflow/work.js"></script>
+<!-- <script type="text/javascript" src="{{ MEDIA_URL }}/js/workflow/process.js"></script> -->
+<script type="text/javascript" src="{{ MEDIA_URL }}/js/workflow/history.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}/js/workflow/file.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}/js/workflow/item.js"></script>
+
+<script type="text/javascript" src="{{ MEDIA_URL }}/js/extjs/ux/GroupSummary.js"></script>
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}/js/extjs/ux/GroupSummary.css">
+
+<script type="text/javascript" src="{{ MEDIA_URL }}/js/extjs/extensions/FileUpload/FileUploadField.js"></script>
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}/js/extjs/extensions/FileUpload/fileuploadfield.css">
+{% endblock %}
+
+{% block js_init %}
+{{ block.super }}
+
+/*
+ * Se houver step para o usuario, adiciona uma tab no tabpanel principal
+ * com o grid contendo as operacoes.
+ * Exibe as tarefas do step na viewport east.
+ */
+
+  {# % if has_step % #}
+  {# % else % #}
+      /*new Ext.Window({
+        title: 'Error',
+        width: 240,
+        height: 130,
+        modal: true,
+        closable: false,
+        html: '<p style="padding:5px;">Você não faz parte de nenhum processo.<br>Entre em contato com o Administrador</p>',
+        buttons: [{
+          text: 'Logout',
+          handler: function() {
+            window.location.href = URL_AUTH_LOGOUT;
+          }
+        }],
+      }).show(); */
+  {# % endif % #}
+
+{% endblock %}
+
+{% block css %}
+body { font-family: Arial; }
+.helpTitle {
+  background: #efefef;
+  font-size: 12pt;
+  color: #333333;
+  padding: 8px;
+}
+.helpText {
+  padding: 8px;
+  font-size: 10pt;
+  padding-bottom: 10px;
+  text-align: justify;
+}
+{% endblock %}
+
+{% block main %}
+<div id="divHelp" style="padding:10px;" class="x-hide-display">
+  <h1 class="helpTitle">O que é um workflow?</h1>
+  <p class="helpText">
+    É a sequência de passos necessários para executar uma ação, de acordo com um conjunto de regras e procedimentos.
+    <br>
+    Termos utilizados:<br><br>
+    <b>Processo:</b> É o conjunto de ações que objetivam atingir uma meta.<br>
+    <b>Passo:</b> Conjunto de tarefas a serem realizadas dentro de um prazo<br>
+    <b>Trabalho:</b> É uma ação, a meta a ser cumprida.
+  </p>
+
+  <h1 class="helpTitle">Como funciona o sistema?</h1>
+  <p class="helpText">
+    A tela do sistema é divido em 3 partes:<br><br>
+    <b>Painel lateral:</b> Contém os processos que você participa.
+    Abaixo do nome do processo está(ão) o(s) passo(s) que depende(m) de você para dar continuidade ao processo.
+    Se você tiver permissão para inicar um trabalho, vai ser exibido um botão com o texto "Novo".
+    <br><br>
+    <b>Painel centro-superior:</b> É onde está esse texto que você está lendo. Ao clicar sobre um passo no painel
+    lateral, uma nova aba será criada contendo os trabalhos parados aguardando sua decisão entre aceitar e dar
+    continuidade ao processo ou recusar fazendo o trabalho voltar ao passo anterior.
+    <br><br>
+    <b>Painel centro-inferior:</b> Os trabalhos do processo selecionado, que não dependem mais de você, são exibidos
+    separadamente para que possa ser feito um acompanhamento do histórico e em que passo está no momento.
+  </p>
+
+  <h1 class="helpTitle">Como podemos melhorar?</h1>
+  <p class="helpText">
+    Essa é uma versão experimental de um sistema que ainda tem muito a amadurecer. Você pode ajudar
+    enviando sugestões ou relato de problemas para o e-mail <a href="mailto:gustavo@gustavohenrique.net">gustavo@gustavohenrique.net</a>.
+    Em caso de erros, por favor, relate exatamente a mensagem de erro e o que foi feito que ocasionou o erro.
+  </p>
+  <div style="height:10px;border-bottom:1px solid gray;"></div>
+  <h1 class="helpTitle">Status da Conta</h1>
+  <p class="helpText" style="background:#f1f1f1;">
+    Bem-vindo(a) <b>{{ user }}</b>, <a href="{% url auth_logout %}">clique aqui</a> se desejar sair.<br>
+  </p>
+</div>
+
+
+{% endblock %}

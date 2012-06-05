@@ -1,0 +1,26 @@
+{% extends "databrowse/base_site.html" %}
+
+{% block title %}{{ object.model.verbose_name|capfirst }}: {{ object }}{% endblock %}
+
+{% block content %}
+
+
+<h1>{{ object.model.verbose_name|capfirst }}: {{ object }}</h1>
+
+<table class="objectinfo">
+{% for field in object.fields %}
+<tr class="{% cycle 'odd' 'even' %}">
+<th>{{ field.field.verbose_name|capfirst }}</th>
+<td>
+{% if field.urls %}
+{% for value, url in field.urls %}
+{% if url %}<a href="#{# { url } #}">{% endif %}{{ value }}{% if url %}</a>{% endif %}{% if not forloop.last %}, {% endif %}
+{% endfor %}
+{% else %}{% endif %}
+</td>
+</tr>
+{% endfor %}
+</table>
+
+
+{% endblock %}

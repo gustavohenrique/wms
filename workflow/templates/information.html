@@ -1,0 +1,45 @@
+{% extends 'base_iframe.html' %}
+
+{% block css %}
+body {
+  background: white;
+  margin: 10px;
+  font-size: 10pt;
+  font-family: Arial;
+}
+.Title {
+  font-size: 10pt;
+  background: #efefef;
+  padding: 8px;
+  color: #333333;
+}
+ul { margin: 8px; }
+{% endblock %}
+
+{% block main %}
+
+{% if initial_fields %}
+    <h2 class="Title">DADOS INICIAIS</h2>
+    <ul>
+    {% for item in initial_fields %}
+        <li>{{ item.label }}: {{ item.value }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    Nenhuma informação inicial<br>
+{% endif %}
+
+{% regroup information by step as info_list %}
+
+
+{% for information in info_list %}
+    <h2 class="Title">{{ information.grouper }}</h2>
+    <ul>
+        {% for item in information.list %}
+        <li>{{ item.label }}: {{ item.value }}</li>
+        {% endfor %}
+    </ul>
+
+{% endfor %}
+
+{% endblock %}
